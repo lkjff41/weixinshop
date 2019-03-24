@@ -14,7 +14,7 @@ use app\api\validate\BaseValidate;
 class IDMustBePostiveInt extends BaseValidate
 {
     protected $rule = [
-        'id' => 'require|isPostiveInteger'
+        'id' => 'require|isPostiveInteger',
     ];
 
     protected function isPostiveInteger($value,$rule = '',$data = '',$field = ''){
