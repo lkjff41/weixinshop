@@ -11,9 +11,10 @@ use app\api\model\Theme as ThemeModel;
 
 class Theme extends Controller
 {
-    /*
-     * @url /theme?ids=id1,id2,id3
+    /**
+     * @param string $ids
      * @return theme模型
+     * @url /theme?ids=id1,id2,id3
      */
     public function getSimpleList($ids=''){
         (new IDCollection())->goCheck();
@@ -34,7 +35,8 @@ class Theme extends Controller
     public function getComplexOne($id){
         (new IDMustBePostiveInt())->goCheck();
         $result = ThemeModel::getThemeWithProducts($id);
-        if ($result->isEmpty()){
+//        dump($result);die;
+        if (!$result){
             throw new ThemeException();
         }
         return json($result);

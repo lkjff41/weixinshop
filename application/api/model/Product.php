@@ -2,6 +2,7 @@
 
 namespace app\api\model;
 
+use app\api\validate\ProductException;
 use think\Model;
 
 class Product extends BaseModel
@@ -20,5 +21,14 @@ class Product extends BaseModel
             ->order('create_time desc')
             ->select();
         return $products;
+    }
+
+    /**
+     * @param $id
+     * 根据 分类id 取出商品
+     */
+    public static function getProductsByCategoryId($id){
+        $result = self::where('category_id',$id)->select();
+        return $result;
     }
 }
