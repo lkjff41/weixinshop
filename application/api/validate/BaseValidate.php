@@ -28,4 +28,14 @@ class BaseValidate extends Validate
             return true;
         }
     }
+
+//    正整数验证方法
+    protected function isPostiveInteger($value,$rule = '',$data = '',$field = ''){
+        if (is_numeric($value) && is_int($value + 0) && ($value + 0) > 0){
+            return true;
+        }else{
+            return false;
+//            return $field.'必须是正整数';
+        }
+    }
 }

@@ -6,7 +6,7 @@
  * Time: 21:38
  */
 
-namespace app\api\controller\v1;
+namespace app\api\controller\v2;
 
 use app\api\model\Banner as BannerModel;
 use app\api\model\Image;
@@ -24,13 +24,6 @@ class Banner
      * /banner/:id
      */
     public function getBanner($id){
-        (new IDMustBePostiveInt())->goCheck();
-
-        $banner = BannerModel::getBannerByID($id);
-        if ($banner->isEmpty()){
-            throw new BannerMissException();
-        }
-//        echo config('setting.img_prefix');
-        return json($banner);
+        return 'aaaaaaaaaaaaaaaaaaa0';
     }
 }

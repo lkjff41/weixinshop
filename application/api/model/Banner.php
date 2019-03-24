@@ -12,7 +12,7 @@ namespace app\api\model;
 use think\Model;
 use think\Exception;
 
-class Banner extends Model
+class Banner extends BaseModel
 {
 //    整个model隐藏字段
     protected $hidden = ['update_time','delete_time'];
