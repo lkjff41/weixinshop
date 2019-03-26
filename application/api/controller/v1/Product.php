@@ -42,4 +42,8 @@ class Product extends Controller
         $result = $result->hidden(['summary']);
         return $result;
     }
+
+    public function getOne($id){
+
+    }
 }
