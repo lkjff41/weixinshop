@@ -27,7 +27,7 @@ class Banner
         (new IDMustBePostiveInt())->goCheck();
 
         $banner = BannerModel::getBannerByID($id);
-        if ($banner->isEmpty()){
+        if (!$banner){
             throw new BannerMissException();
         }
 //        echo config('setting.img_prefix');

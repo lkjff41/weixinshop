@@ -44,6 +44,12 @@ class Product extends Controller
     }
 
     public function getOne($id){
-
+        (new IDMustBePostiveInt())->goCheck();
+        $result = ProductModel::getProductDetail($id);
+        if (!$result){
+            throw new ProductException();
+        }
+        dump($result->toArray());
+        return $result;
     }
 }
