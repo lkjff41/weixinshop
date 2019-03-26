@@ -14,6 +14,5 @@ class BaseModel extends Model
             $finalUrl = config('setting.img_prefix').$value;
         }
         return $finalUrl;
-
     }
 }

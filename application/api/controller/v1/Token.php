@@ -22,4 +22,6 @@ class Token
             'token' => $token,
         ];
     }
+
+
 }
