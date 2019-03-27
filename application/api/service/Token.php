@@ -24,6 +24,12 @@ class Token
         return md5($randChars.$timestamp.$salt);
     }
 
+    //    获取当前uid
+    public static function getCurrentUid(){
+        $uid = self::getCurrentTokenVar('uid');
+        return $uid;
+    }
+
 
 //    获取token指定键的值
     public static function getCurrentTokenVar($key){
@@ -34,7 +40,7 @@ class Token
             throw new TokenException();
         }else{
             if (!is_array($vars)){
-                $vars = json_decode($vars.true);
+                $vars = json_decode($vars,true);
             }
             if (array_key_exists($key,$vars)){
                 return $vars[$key];
@@ -45,9 +51,5 @@ class Token
     }
 
 
-//    获取当前uid
-    public static function getCurrentUid(){
-        $uid = self::getCurrentTokenVar('uid');
-        return $uid;
-    }
+
 }

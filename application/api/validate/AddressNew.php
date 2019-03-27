@@ -16,7 +16,7 @@ class AddressNew extends BaseValidate
         'mobile' => 'require|isMobile',
         'province' => 'require|isNotEmpty',
         'city' => 'require|isNotEmpty',
-        'count' => 'require|isNotEmpty',
+        'country' => 'require|isNotEmpty',
         'detail' => 'require|isNotEmpty',
     ];
 }

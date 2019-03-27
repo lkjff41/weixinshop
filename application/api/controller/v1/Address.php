@@ -13,11 +13,32 @@ use app\api\model\User as UserModel;
 use app\api\model\UserAddress;
 use app\api\validate\AddressNew;
 use app\api\service\Token as TokenService;
+use app\lib\enum\ScopeEnum;
+use app\lib\exception\ForbiddenException;
 use app\lib\exception\SuccessMessage;
+use app\lib\exception\TokenException;
 use app\lib\exception\UserException;
+use think\Controller;
 
-class Address
+class Address extends Controller
 {
+    protected $beforeActionList = [
+        'checkPrimaryScope' =>['only','createOrUpdateAddress'],
+    ];
+
+//    验证权限
+    protected function checkPrimaryScope(){
+        $scope = TokenService::getCurrentTokenVar('scope');
+        if ($scope){
+            if ($scope >= ScopeEnum::User){
+                return true;
+            }else{
+                throw new ForbiddenException();
+            }
+        }else{
+            throw new TokenException();
+        }
+    }
 
     public function createOrUpdateAddress(){
         $validate = new AddressNew();
@@ -41,12 +62,16 @@ class Address
         $userAddress = $user->address;
         if (!$userAddress){
 //            通过关联新增
-//            $user->address()->save($dataArray);
-            UserAddress::addAddress($dataArray);
+            $user->address()->save($dataArray);
+            //这样user_id外键加不进去
+//            UserAddress::addAddress($dataArray);
         }else{
-//            $user->address->save($dataArray);
-            UserAddress::updateAddress($dataArray);
+//            更新save没有括号
+            $user->address->save($dataArray);
+
+//            UserAddress::updateAddress($dataArray);
         }
-        return new SuccessMessage();
+//        这样正确返回状态码
+        return json(new SuccessMessage(),201);
     }
 }

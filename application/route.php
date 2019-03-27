@@ -38,5 +38,5 @@ Route::get('api/:version/category/all','api/:version.Category/getAllCategories')
 //获取令牌
 Route::post('api/:version/token/user','api/:version.Token/getToken');
 
-
+//新增或添加收货地址
 Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
